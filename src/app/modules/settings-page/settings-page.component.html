@@ -1,0 +1,60 @@
+<div class="setting-page">
+  <form [formGroup]="settingForm" (ngSubmit)="onSubmit()">
+    <p class="fs-3 fw-bold text-center">Update your Settings</p>
+
+    <div class="form-group mt-4">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="image"
+        placeholder="Enter the image link"
+      />
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="username"
+        placeholder="Enter the username"
+      />
+    </div>
+
+    <div class="form-group">
+      <textarea
+        class="form-control"
+        formControlName="bio"
+        rows="3"
+        placeholder="Enter the bio"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="email"
+        class="form-control"
+        formControlName="email"
+        placeholder="Enter the email"
+      />
+    </div>
+
+    <div class="form-group">
+      <input
+        type="password"
+        class="form-control"
+        formControlName="password"
+        placeholder="Enter the password"
+      />
+    </div>
+
+    <div class="form-button d-flex justify-content-end">
+      <button
+        class="btn btn-success"
+        [disabled]="settingForm.invalid"
+        type="submit"
+      >
+        Update My Profile
+      </button>
+    </div>
+  </form>
+</div>

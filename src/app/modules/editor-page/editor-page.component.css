@@ -1,0 +1,20 @@
+.edit-article {
+  width: 50%;
+  margin: 1rem auto;
+  padding: 1.5rem;
+
+  border: 1px solid gray;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 5px gainsboro;
+}
+
+.tag-item {
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 1rem;
+  vertical-align: middle;
+}
+
+i {
+  cursor: pointer;
+}

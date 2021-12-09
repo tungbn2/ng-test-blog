@@ -1,0 +1,49 @@
+<div class="profile-page">
+  <!-- header -->
+  <div class="profile-header text-center">
+    <img [src]="profileData?.image" alt="" class="profile-avatar mt-2" />
+    <h3 class="fw-bold mt-2">{{ profileData?.username }}</h3>
+    <div class="profile-button mt-2">
+      <button
+        class="btn btn-outline-primary fw-bold"
+        (click)="onFollowUser()"
+        *ngIf="profileData?.username != currentUser?.username || !currentUser"
+      >
+        <i class="fas fa-user-plus"></i>
+        {{ profileData?.following ? "Unfollow" : "Follow" }}
+        {{ profileData?.username }}
+      </button>
+
+      <a
+        routerLink="/settings"
+        class="btn btn-outline-primary fw-bold"
+        *ngIf="profileData?.username == currentUser?.username || !currentUser"
+        ><i class="fas fa-cogs"></i> Go to Settings</a
+      >
+    </div>
+  </div>
+
+  <!-- body -->
+  <div class="profile-articles mt-4">
+    <div class="profile-articles-button">
+      <a
+        class="btn btn-tab"
+        [routerLink]="['/profile', profileData?.username]"
+        routerLinkActive="active"
+        >My Articles</a
+      >
+      <a
+        class="btn btn-tab"
+        [routerLink]="['/profile', profileData?.username, 'favorites']"
+        routerLinkActive="active"
+        >Favorited Articles</a
+      >
+    </div>
+
+    <hr style="margin-top: 0" />
+
+    <div class="article-list-detail mt-2">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

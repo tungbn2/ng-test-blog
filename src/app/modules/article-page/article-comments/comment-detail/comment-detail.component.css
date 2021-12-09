@@ -1,0 +1,17 @@
+.comment-detail {
+  border: 1px solid grey;
+  padding: 1rem;
+  border-radius: 1rem;
+
+  box-shadow: 5px 5px 5px gainsboro;
+}
+
+.comment-detail:hover {
+  box-shadow: 15px 15px 15px gainsboro;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}

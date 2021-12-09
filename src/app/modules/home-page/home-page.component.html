@@ -1,0 +1,60 @@
+<div class="home-page mt-4">
+  <div class="row">
+    <div class="col-9">
+      <div class="home-header">
+        <button
+          class="btn btn-custom"
+          [ngClass]="{ active: status == 'feed' }"
+          (click)="onGotoFeed()"
+          *ngIf="currentUser"
+        >
+          Your Feed
+        </button>
+        <button
+          class="btn btn-custom"
+          [ngClass]="{ active: status == 'global' }"
+          (click)="onGotoGlobal()"
+          [disabled]="!currentUser"
+        >
+          Global Feed
+        </button>
+
+        <button class="btn btn-custom active" *ngIf="status == 'tag'" >
+          Tag Feed
+        </button>
+      </div>
+
+      <hr />
+
+      <div class="home-body">
+        <app-home-articles
+          [articleList]="articleList"
+          *ngIf="isLoaded"
+          (gotoTag)="onNavigateByTag($event)"
+        ></app-home-articles>
+        <app-loading *ngIf="!isLoaded"></app-loading>
+        <div class="no-article" *ngIf="articleList.length == 0 && isLoaded">
+          <h3>Opss,... There is no article here</h3>
+          <a (click)="onGotoGlobal()" class="btn btn-outline-primary"
+            ><i class="fas fa-backward"></i> Back to Global Feed</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col-3 mt-4">
+      <div class="tag-list mt-4">
+        <p class="fs-4 fw-bolder">Popular Tags</p>
+        <p *ngIf="tagList.length == 0">Ops... There is no tag here</p>
+        <ul *ngIf="!tagList.length">
+          <li
+            *ngFor="let tagItem of tagList"
+            (click)="onNavigateByTag(tagItem)"
+            class="tag-link"
+          >
+            {{ tagItem }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

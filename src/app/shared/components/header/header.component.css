@@ -1,0 +1,16 @@
+.avatar-header {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid gray;
+  margin: auto 5px;
+}
+
+.nav-link {
+  font-size: 1.1rem;
+}
+
+.active {
+  color:rgb(120, 158, 45) ;
+  font-weight: bolder;
+}

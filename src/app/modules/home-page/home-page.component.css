@@ -1,0 +1,33 @@
+ul {
+  padding: 0;
+}
+
+hr {
+  margin-top: 0;
+}
+
+.active {
+  font-weight: bolder;
+  border-bottom: 1px solid rgb(13, 110, 250);
+  font-size: 1.1rem;
+  color: rgb(13, 110, 250);
+}
+
+.btn-custom:hover {
+  border-bottom: 2px solid rgb(13, 110, 250);
+  color: rgb(13, 110, 250);
+}
+
+.tag-list {
+  border: 1px solid gray;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.tag-link {
+  cursor: pointer;
+  list-style: none;
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 10px;
+}

@@ -1,0 +1,50 @@
+<div class="article mb-2">
+  <div class="article-header d-flex justify-content-between">
+    <div class="left d-flex align-items-center">
+      <img
+        [src]="article?.author?.image"
+        alt="ava"
+        class="article-header-avatar me-2"
+      />
+      <div class="article-info">
+        <a
+          [routerLink]="['/profile', article?.author?.username]"
+          class="nav-link"
+          >{{ article?.author?.username }}</a
+        >
+        <p>{{ article?.updatedAt | date: "longDate" }}</p>
+      </div>
+    </div>
+    <div class="favorite-btn">
+      <button
+        class="btn btn-success"
+        (click)="onFavorite(article.slug, article.favorited)"
+      >
+        <i
+          class="fa-heart"
+          [ngClass]="{
+            far: !article?.favorited,
+            fas: article?.favorited
+          }"
+        ></i>
+        {{ article?.favoritesCount }}
+      </button>
+    </div>
+  </div>
+
+  <div class="article-body">
+    <h3>{{ article?.title }}</h3>
+    <p>{{ article?.body }}</p>
+  </div>
+
+  <hr />
+
+  <div class="article-footer d-flex justify-content-between">
+    <button class="btn btn-success" (click)="onNavigate()">Read more</button>
+    <div class="tag-list">
+      <span *ngFor="let item of article?.tagList" class="tag-item me-1">
+        #{{ item }}</span
+      >
+    </div>
+  </div>
+</div>

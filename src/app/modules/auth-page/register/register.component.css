@@ -1,0 +1,9 @@
+.app-register {
+  width: 50%;
+  margin: 1rem auto;
+  padding: 1rem;
+
+  border: 1px solid gray;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 5px gainsboro;
+}

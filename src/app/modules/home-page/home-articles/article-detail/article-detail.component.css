@@ -1,0 +1,55 @@
+.article {
+  border: 1px solid gray;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+.article:hover {
+  box-shadow: 5px 5px 15px gray;
+}
+
+.article-header {
+  background-color: gainsboro;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.article-body,
+.article-footer {
+  padding: 10px;
+}
+
+.article-header-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+p {
+  margin: 0;
+}
+
+.nav-link {
+  padding: 0;
+}
+
+.tag-item {
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-custom {
+  font-weight: bold;
+}
+
+.btn-custom:hover {
+  border-bottom: 1px solid rgb(13, 110, 250);
+  color: rgb(13, 110, 250);
+}
+
+hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-size: 16px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+body {
+  background: url("https://t1.daumcdn.net/cfile/blog/9978E5495DB33B1303")
+    no-repeat;
+  background-size: 100vw 100vh;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.form-control:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px gainsboro;
+}

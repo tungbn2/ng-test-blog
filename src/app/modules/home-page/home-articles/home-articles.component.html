@@ -1,0 +1,7 @@
+<div class="home-articles">
+  <app-article-detail
+    *ngFor="let article of articleList"
+    [article]="article"
+    (gotoTag)="OnGotoTag($event)"
+  ></app-article-detail>
+</div>

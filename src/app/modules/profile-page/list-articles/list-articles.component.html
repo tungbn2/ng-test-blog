@@ -1,0 +1,17 @@
+<div class="my-article-list">
+  <app-loading *ngIf="!isLoaded"></app-loading>
+
+  <!-- no article -->
+  <div class="no-article" *ngIf="articlesList?.articles?.length == 0">
+    <p class="fs-3">Ops... there is no article here</p>
+    <a class="btn btn-outline-primary mt-2" [routerLink]="['/']"
+      ><i class="fas fa-backward"></i> Back to Home</a
+    >
+  </div>
+
+  <!-- list-article -->
+  <app-article-detail
+    *ngFor="let article of articlesList?.articles"
+    [article]="article"
+  ></app-article-detail>
+</div>
