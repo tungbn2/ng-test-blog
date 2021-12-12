@@ -4,6 +4,7 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
+  AfterViewInit,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ArticlesModel, UserModel } from 'src/app/models';
@@ -16,13 +17,13 @@ import { TagsStoreService } from 'src/app/services/store/tags-store.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent implements OnInit, OnDestroy {
-
+export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
   articleList: ArticlesModel.Article[] = [];
   totalArticles: number = 0;
   tagList: string[] = [];
   currentUser: UserModel.User | null = null;
 
+  scrollTo: number = 0;
   status: 'feed' | 'global' | 'tag' = 'global';
   pageList: number[] = [];
   currentPage: number = 1;
@@ -64,6 +65,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
         }
       }
     );
+  }
+
+  ngAfterViewInit(): void {
+    this.scrollTo = document.querySelector('#main-content')
+      ?.scrollHeight as number;
   }
 
   ngOnDestroy() {
@@ -108,7 +114,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.isLoaded = false;
     this.articleStore.GetListArticles({ tag });
 
-    let n = document.querySelector('#main-content')?.scrollHeight as number;
-    document.body.scrollTo(0, n - 50);
+    document.body.scrollTo(0, this.scrollTo - 50);
   }
 }
