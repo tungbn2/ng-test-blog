@@ -1,0 +1,27 @@
+<div class="comment-detail mb-3">
+  <div class="comment-body">
+    <p class="fs-4">"{{ comment.body }}"</p>
+  </div>
+  <hr />
+  <div class="comment-panel d-flex justify-content-between">
+    <div class="comment-author d-flex align-items-center">
+      <a [routerLink]="['/profile', comment.author.username]"
+        ><img [src]="comment.author.image" alt="" class="avatar me-2"
+      /></a>
+      <p>
+        Comment by
+        <a
+          class="fw-bold text-decoration-none"
+          [routerLink]="['/profile', comment.author.username]"
+          >{{ comment.author.username }}</a
+        >
+        at
+        <span class="fw-bold">{{ comment.createdAt | date: "longDate" }}</span>
+      </p>
+    </div>
+
+    <button class="btn btn-success" *ngIf="isUser" (click)="onDeleteComment()">
+      <i class="far fa-trash-alt"></i>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+  <app-loading *ngIf="!isLoaded"></app-loading>
+
+  <div class="article-page" *ngIf="isLoaded">
+    <app-article-header
+      [articleData]="articleData"
+      [isUser]="currentUser?.username == articleData?.author?.username"
+    ></app-article-header>
+    <hr />
+    <app-article-comments
+      [isUser]="currentUser?.username == articleData?.author?.username"
+    ></app-article-comments>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="profile-page mt-3 container">
+  <!-- header -->
+  <div class="profile-header text-center">
+    <img
+      [src]="profileData?.image"
+      alt=""
+      class="profile-avatar mb-2"
+      (error)="changeSource($event)"
+    />
+    <h3 class="fw-bold mt-2">{{ profileData?.username }}</h3>
+    <div class="profile-button mt-2">
+      <button
+        class="btn btn-primary fw-bold"
+        (click)="onFollowUser()"
+        *ngIf="profileData?.username != currentUser?.username && currentUser"
+      >
+        <i class="fas fa-user-plus"></i>
+        {{ profileData?.following ? "Unfollow" : "Follow" }}
+        {{ profileData?.username }}
+      </button>
+
+      <a
+        routerLink="/settings"
+        class="btn btn-primary fw-bold"
+        *ngIf="profileData?.username == currentUser?.username && currentUser"
+        ><i class="fas fa-cogs"></i> Go to Settings</a
+      >
+    </div>
+  </div>
+
+  <!-- body -->
+  <div class="profile-articles mt-4">
+    <div class="article-list-detail mt-2">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

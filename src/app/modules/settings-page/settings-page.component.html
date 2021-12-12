@@ -1,0 +1,75 @@
+<div class="row m-2">
+  <div class="setting-page col-lg-6 col-md-8 col-xs-12">
+    <form [formGroup]="settingForm" (ngSubmit)="onSubmit()" class="p-2">
+      <p class="fs-3 fw-bold text-center">Update your Settings</p>
+
+      <div class="form-group mt-4">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="image"
+          placeholder="Enter the new image link"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="username"
+          placeholder="Enter the new username"
+          [ngClass]="{
+            'is-invalid':
+              settingForm.controls.username.errors?.required &&
+              settingForm.controls.username.touched,
+            'is-valid': !!settingForm.controls.username.value
+          }"
+        />
+      </div>
+
+      <div class="form-group">
+        <textarea
+          class="form-control"
+          formControlName="bio"
+          rows="3"
+          placeholder="Enter the bio"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Enter the email"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Enter the new password"
+          autocomplete="off"
+          readonly
+        />
+      </div>
+
+      <div class="form-button d-flex justify-content-between">
+        <button class="btn btn-danger" (click)="onLogout()" type="button">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+        <button
+          class="btn btn-success"
+          [disabled]="settingForm.invalid"
+          type="submit"
+        >
+          <i class="fas fa-edit"></i>
+          Update My Profile
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

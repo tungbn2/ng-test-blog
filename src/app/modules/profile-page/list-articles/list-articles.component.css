@@ -1,0 +1,22 @@
+.btn-tab {
+  box-shadow: 2px 2px 5px gainsboro;
+  border-radius: 1rem;
+  
+}
+
+.btn-tab:hover {
+  box-shadow: 10px 10px 5px gainsboro;
+  color: rgb(13, 110, 250);
+}
+
+.active {
+  font-weight: bolder;
+  border-bottom: 1px solid gainsboro;
+  box-shadow: 2px 2px 5px rgb(209, 209, 209);
+  font-size: 1.1rem;
+  color: rgb(13, 110, 250);
+}
+
+.page-link {
+  border: 0px;
+}

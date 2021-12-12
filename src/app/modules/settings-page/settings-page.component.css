@@ -1,0 +1,9 @@
+.setting-page {
+  width: 50%;
+  margin: 1rem auto;
+  border: 1px solid gray;
+  border-radius: 1rem;
+
+  padding: 1rem;
+  box-shadow: 5px 5px 5px gainsboro;
+}

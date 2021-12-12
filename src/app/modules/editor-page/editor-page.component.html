@@ -1,0 +1,82 @@
+<div class="row m-2">
+  <app-loading *ngIf="!loadedData"></app-loading>
+
+  <div class="edit-article col-lg-6 col-md-8 col-xs-12" *ngIf="loadedData">
+    <h2 class="text-center fw-bold mb-4">
+      {{ slug ? "Update Article" : "Create new Article" }}
+    </h2>
+
+    <form [formGroup]="formEditArticle" (ngSubmit)="onSubmit(tagList.value)">
+      <div class="form-group mt-2">
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              formEditArticle.controls.title.errors?.required &&
+              formEditArticle.controls.title.touched,
+            'is-valid': !!formEditArticle.controls.title.value
+          }"
+          formControlName="title"
+          placeholder="Enter the title ..."
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="description"
+          placeholder="Enter the description ..."
+          [ngClass]="{
+            'is-invalid':
+              formEditArticle.controls.description.errors?.required &&
+              formEditArticle.controls.description.touched,
+            'is-valid': !!formEditArticle.controls.description.value
+          }"
+        />
+      </div>
+
+      <div class="form-group">
+        <textarea
+          class="form-control"
+          rows="3"
+          formControlName="body"
+          placeholder="Enter the body ..."
+          [ngClass]="{
+            'is-invalid':
+              formEditArticle.controls.body.errors?.required &&
+              formEditArticle.controls.body.touched,
+            'is-valid': !!formEditArticle.controls.body.value
+          }"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          #tagList
+          placeholder="Enter the tagList ..."
+        />
+      </div>
+
+      <div class="show-taglist">
+        <span *ngFor="let tagItem of tagListData; index as i" class="tag-item"
+          >#{{ tagItem }}
+          <i class="fas fa-times-circle" (click)="onRemoveTagItem(i)"></i
+        ></span>
+      </div>
+
+      <div class="form-button mt-3 d-flex justify-content-end">
+        <button
+          class="btn btn-success"
+          type="submit"
+          [disabled]="formEditArticle.invalid || wait"
+        >
+          Publish Article
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

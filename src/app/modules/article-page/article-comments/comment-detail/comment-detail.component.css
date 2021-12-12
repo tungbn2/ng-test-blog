@@ -1,0 +1,21 @@
+.comment-detail {
+  padding: 1rem;
+  border-radius: 1rem;
+
+  cursor: pointer;
+
+  box-shadow: 1px 1px 15px gainsboro;
+  transition: all 0.5s ease-in-out;
+
+  background-color: rgb(230, 244, 244);
+}
+
+.comment-detail:hover {
+  box-shadow: 3px 3px 15px rgb(175, 175, 175);
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}

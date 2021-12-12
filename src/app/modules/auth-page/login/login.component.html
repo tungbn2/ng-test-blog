@@ -1,0 +1,44 @@
+<div class="row m-2">
+  <div class="app-login col-lg-4 col-md-6 col-xs-12">
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+      <h2 class="fw-bold text-center">Login form</h2>
+
+      <div class="text-center">
+        <a routerLink="/register">Need an account?</a>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="email"
+          placeholder="Enter your email ..."
+          class="form-control mt-2"
+          ngModel
+          name="email"
+          required
+          email
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          placeholder="Enter your password ..."
+          class="form-control"
+          ngModel
+          name="password"
+          required
+        />
+      </div>
+
+      <div class="button d-flex justify-content-end">
+        <button
+          class="btn btn-success"
+          type="submit"
+          [disabled]="loginForm.invalid"
+        >
+          Sign in
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

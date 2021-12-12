@@ -1,0 +1,116 @@
+<div class="article-detail">
+  <div class="article-header mt-4">
+    <h2 class="fw-bold">{{ articleData?.currentArticle?.title }}</h2>
+    <div class="author-detail row">
+      <div class="author-info col-md-5 d-flex align-items-center">
+        <div class="image me-4">
+          <a [routerLink]="['/profile', articleData?.author?.username]">
+            <img
+              [src]="articleData?.author?.image"
+              alt=""
+              class="avatar-img"
+              (error)="changeSource($event)"
+            />
+          </a>
+        </div>
+
+        <div class="author-name">
+          <a
+            class="nav-link text-dark"
+            [routerLink]="['/profile', articleData?.author?.username]"
+            ><h4 class="fw-bold">{{ articleData?.author?.username }}</h4></a
+          >
+          <p class="fw-bold">
+            {{ articleData?.currentArticle?.createdAt | date: "longDate" }}
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="right col-md-7 d-flex align-items-center justify-content-center"
+      >
+        <div
+          class="
+            follow-group
+            d-flex
+            align-items-center
+            justify-content-center
+            flex-wrap
+          "
+          *ngIf="!isUser"
+        >
+          <button
+            class="btn btn-width btn-outline-light text-dark me-1"
+            (click)="onClickButtonFollow($event)"
+          >
+            <i
+              class="fa-thumbs-up"
+              [ngClass]="{
+                far: !articleData?.author?.following,
+                fas: articleData?.author?.following
+              }"
+            ></i>
+            {{ articleData?.author?.following ? "Unfollow " : "Follow" }}
+            {{ articleData?.author?.username }}
+          </button>
+
+          <button
+            class="btn btn-success me-1"
+            (click)="onClickFavorite($event)"
+          >
+            <i
+              class="fa-heart"
+              [ngClass]="{
+                far: !articleData?.currentArticle?.favorited,
+                fas: articleData?.currentArticle?.favorited
+              }"
+            ></i>
+            {{ articleData?.currentArticle?.favoritesCount }}
+          </button>
+        </div>
+
+        <div
+          class="
+            auth-group
+            d-flex
+            align-items-center
+            justify-content-center
+            flex-wrap
+          "
+          *ngIf="isUser"
+        >
+          <button
+            class="btn btn-width btn-secondary me-1"
+            (click)="OnNavigate()"
+          >
+            <i class="fas fa-pen-nib"></i> Edit Article
+          </button>
+
+          <button
+            class="btn btn-width btn-danger me-1"
+            (click)="onDeleteArticle()"
+          >
+            <i class="far fa-trash-alt"></i> Delete Article
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-body">
+    <p class="fs-3 mb-2">
+      <i class="fas fa-quote-left fa-xs"></i>
+      {{ articleData?.currentArticle?.description }}"
+      <i class="fas fa-quote-right fa-xs"></i>
+    </p>
+    <hr />
+    <span
+      *ngFor="let item of articleData?.currentArticle?.tagList"
+      class="tag-name fs-6 me-2"
+      style="cursor: pointer"
+      routerLink="/"
+    >
+      #{{ item }}</span
+    >
+  </div>
+</div>

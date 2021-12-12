@@ -1,0 +1,37 @@
+<div class="comment-article">
+  <div class="comment-box form-group mb-3 mt-2 p-4" *ngIf="currentUser">
+    <textarea
+      name="comment"
+      class="form-control mb-3"
+      [formControl]="commentInput"
+      placeholder="Enter your comment ..."
+      rows="3"
+    ></textarea>
+
+    <div class="group-button d-flex justify-content-between">
+      <a [routerLink]="['/profile', currentUser.username]"
+        ><img
+          [src]="currentUser.image"
+          alt=""
+          class="avatar"
+          (error)="changeSource($event)"
+      /></a>
+      <button
+        class="btn btn-success"
+        (click)="onSubmitComment()"
+        [disabled]="commentInput.invalid"
+      >
+        <i class="fas fa-plus-circle"></i> Create Comment
+      </button>
+    </div>
+  </div>
+
+  <app-loading *ngIf="!isLoaded"></app-loading>
+  <div class="comment-list" *ngIf="isLoaded">
+    <app-comment-detail
+      *ngFor="let comment of commentList"
+      [comment]="comment"
+      [isUser]="isUser"
+    ></app-comment-detail>
+  </div>
+</div>

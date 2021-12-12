@@ -1,0 +1,150 @@
+<div class="home-page">
+  <!-- header -->
+  <header class="xxl bg-img">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h1 class="page-title">Welcome to Team 1 Blog</h1>
+          <p class="mb-3">
+            Team 1 Blog is a theme designed and developed with attention to
+            detail.
+          </p>
+          <h5 class="mb-30">Popular Tags</h5>
+          <div *ngIf="!tagList.length">
+            <span
+              *ngFor="let tagItem of tagList"
+              (click)="onNavigateByTag(tagItem)"
+              class="tag-link"
+            >
+              #{{ tagItem }}
+            </span>
+
+            <span class="tag-link" (click)="onNavigateByTag('welcome')">
+              #welcome
+            </span>
+
+            <span class="tag-link" (click)="onNavigateByTag('implementations')">
+              #implementations
+            </span>
+
+            <span class="tag-link" (click)="onNavigateByTag('codebaseShow')">
+              #codebaseShow
+            </span>
+          </div>
+        </div>
+        <!-- column -->
+        <div class="col-lg-6"></div>
+        <!-- column -->
+      </div>
+      <!-- / row -->
+    </div>
+    <!-- / container -->
+  </header>
+
+  <!-- body -->
+
+  <div class="row" id="main-content" #mainContent style="height: 100vh">
+    <div class="p-4">
+      <!-- nav -->
+      <div class="home-header row d-flex justify-content-center">
+        <div class="tag-group col-md-6 d-flex justify-content-around">
+          <button
+            class="btn btn-custom fs-4"
+            [ngClass]="{ active: status == 'feed' }"
+            (click)="onGotoFeed()"
+            *ngIf="currentUser"
+          >
+            Your Feed
+          </button>
+
+          <button
+            class="btn btn-custom fs-4"
+            [ngClass]="{ active: status == 'global' }"
+            (click)="onGotoGlobal()"
+            [disabled]="!currentUser"
+          >
+            Global Feed
+          </button>
+
+          <button class="btn btn-custom active fs-4" *ngIf="status == 'tag'">
+            Tag Feed
+          </button>
+        </div>
+
+        <div class="pagination d-flex justify-content-center mt-4">
+          <nav aria-label="Page navigation example" *ngIf="pageList.length">
+            <ul class="pagination m-0">
+              <li class="page-item" [ngClass]="{ disabled: currentPage == 1 }">
+                <a
+                  class="page-link"
+                  aria-label="Previous"
+                  (click)="onPrevPage()"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+
+              <li class="page-item" *ngFor="let item of pageList">
+                <a class="page-link" (click)="onGotoPage(item)">{{ item }}</a>
+              </li>
+
+              <li
+                class="page-item"
+                [ngClass]="{ disabled: currentPage == pageList.length }"
+              >
+                <a class="page-link" aria-label="Next" (click)="onNextPage()">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <!-- body -->
+      <div class="home-body d-flex justify-content-center">
+        <div class="container-width">
+          <app-home-articles
+            [articleList]="articleList"
+            *ngIf="isLoaded"
+            (gotoTag)="onNavigateByTag($event)"
+          ></app-home-articles>
+          <app-loading *ngIf="!isLoaded"></app-loading>
+          <div class="no-article" *ngIf="articleList.length == 0 && isLoaded">
+            <h3>Oops,... There is no article here</h3>
+            <a (click)="onGotoGlobal()" class="btn btn-outline-primary"
+              ><i class="fas fa-backward"></i> Back to Global Feed</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- pagination footer -->
+      <div class="pagination d-flex justify-content-center mt-4">
+        <nav aria-label="Page navigation example" *ngIf="pageList.length">
+          <ul class="pagination m-0">
+            <li class="page-item" [ngClass]="{ disabled: currentPage == 1 }">
+              <a class="page-link" aria-label="Previous" (click)="onPrevPage()">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+
+            <li class="page-item" *ngFor="let item of pageList">
+              <a class="page-link" (click)="onGotoPage(item)">{{ item }}</a>
+            </li>
+
+            <li
+              class="page-item"
+              [ngClass]="{ disabled: currentPage == pageList.length }"
+            >
+              <a class="page-link" aria-label="Next" (click)="onNextPage()">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+</div>
