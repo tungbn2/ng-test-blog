@@ -98,7 +98,7 @@ header .container {
 }
 
 .bg-img {
-  height: 100vh;
+  max-height: 100vh;
   background-repeat: no-repeat;
   background-origin: border-box;
   background-size: cover;
@@ -109,7 +109,7 @@ header .container {
       rgba(152, 152, 153, 0.4) 55%,
       rgba(245, 247, 247, 0.5)
     ),
-    url("https://toigingiuvedep.vn/wp-content/uploads/2021/08/nhung-background-book-background-sach-dep-day-an-tuong.jpg");
+    url("https://previews.123rf.com/images/motizova/motizova1803/motizova180300087/97488569-open-book-hardback-books-on-wooden-table-education-background-back-to-school-copy-space-for-text-.jpg");
 }
 
 .container-width {

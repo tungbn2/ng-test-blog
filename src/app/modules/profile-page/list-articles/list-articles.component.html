@@ -2,7 +2,7 @@
   <!-- Tab button -->
 
   <div class="home-header row d-flex justify-content-center">
-    <div class="tag-group col-md-6 d-flex justify-content-around">
+    <div class="tag-group col-md-6 d-flex justify-content-around mb-2">
       <a
         class="btn btn-tab fs-4"
         [routerLink]="['/profile', username]"
@@ -17,7 +17,7 @@
       >
     </div>
 
-    <div class="pagination d-flex justify-content-center mt-4">
+    <!-- <div class="pagination d-flex justify-content-center mt-4">
       <nav aria-label="Page navigation example" *ngIf="pageList.length">
         <ul class="pagination m-0">
           <li class="page-item" [ngClass]="{ disabled: currentPage == 1 }">
@@ -40,27 +40,29 @@
           </li>
         </ul>
       </nav>
+    </div> -->
+  </div>
+
+  <div class="body mt-4">
+    <!-- app-loading -->
+    <app-loading *ngIf="!isLoaded"></app-loading>
+
+    <!-- no article -->
+    <div class="no-article" *ngIf="articlesList?.articles?.length == 0">
+      <p class="fs-3">Oops... there is no article here</p>
+      <a class="btn btn-outline-primary mt-2" [routerLink]="['/']"
+        ><i class="fas fa-backward"></i> Back to Home</a
+      >
     </div>
-  </div>
 
-  <!-- app-loading -->
-  <app-loading *ngIf="!isLoaded"></app-loading>
-
-  <!-- no article -->
-  <div class="no-article " *ngIf="articlesList?.articles?.length == 0">
-    <p class="fs-3">Oops... there is no article here</p>
-    <a class="btn btn-outline-primary mt-2" [routerLink]="['/']"
-      ><i class="fas fa-backward"></i> Back to Home</a
-    >
-  </div>
-
-  <!-- list-article -->
-  <div class="list-articles row">
-    <div
-      class="col-lg-4 col-md-6 mb-4"
-      *ngFor="let article of articlesList?.articles"
-    >
-      <app-article-detail [article]="article"></app-article-detail>
+    <!-- list-article -->
+    <div class="list-articles row">
+      <div
+        class="col-lg-4 col-md-6 mb-4"
+        *ngFor="let article of articlesList?.articles"
+      >
+        <app-article-detail [article]="article"></app-article-detail>
+      </div>
     </div>
   </div>
 
