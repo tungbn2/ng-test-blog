@@ -69,6 +69,16 @@ p {
   box-shadow: 5px 5px 15px gray;
 }
 
+.btn-custom-link {
+  font-weight: bold;
+  border-radius: 1rem;
+}
+
+.btn-custom-link:hover {
+  /* border-bottom: 1px solid gainsboro; */
+  box-shadow: 5px 5px 15px gray;
+}
+
 hr {
   margin-top: 5px;
   margin-bottom: 5px;
