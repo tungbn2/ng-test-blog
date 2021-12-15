@@ -14,10 +14,10 @@
           class="article-header-avatar me-2"
       /></a>
       <!-- author -->
-      <div class="author-detail">
+      <div class="author-detail overtext">
         <a
           (click)="onNavigate('/profile', article.author.username)"
-          class="nav-link fw-bold fs-5 overtext"
+          class="nav-link fw-bold fs-5"
           >{{ article.author.username }}</a
         >
         <p>Create at {{ article.updatedAt | date: "shortDate" }}</p>

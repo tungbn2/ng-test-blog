@@ -18,7 +18,9 @@
           <a
             class="nav-link text-dark"
             [routerLink]="['/profile', articleData?.author?.username]"
-            ><h4 class="fw-bold">{{ articleData?.author?.username }}</h4></a
+            ><h4 class="fw-bold overtext">
+              {{ articleData?.author?.username }}
+            </h4></a
           >
           <p class="fw-bold">
             {{ articleData?.currentArticle?.createdAt | date: "longDate" }}
@@ -106,7 +108,7 @@
     <hr />
     <span
       *ngFor="let item of articleData?.currentArticle?.tagList"
-      class="tag-name fs-6 me-2"
+      class="tag-name fs-6 me-2 mt-2"
       style="cursor: pointer"
       routerLink="/"
     >

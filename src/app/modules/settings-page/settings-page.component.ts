@@ -20,12 +20,11 @@ import Swal from 'sweetalert2';
 })
 export class SettingsPageComponent implements OnInit {
   settingForm = new FormGroup({
-    image: new FormControl(
+    image: new FormControl('', []),
+    username: new FormControl(
       '',
-      [],
-      this.validateUserNameFromAPIDebounce.bind(this)
+      Validators.compose([Validators.required, Validators.maxLength(15)])
     ),
-    username: new FormControl('', Validators.required),
     bio: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
@@ -46,13 +45,16 @@ export class SettingsPageComponent implements OnInit {
     });
   }
 
-  onErrorImage(event: any) {
+  onErrorImage() {
     this.isImageValid = false;
-    event.target.src = 'https://api.realworld.io/images/smiley-cyrus.jpeg';
   }
 
   onChangeImageUrl() {
-    console.log(this.settingForm.get('image'));
+    this.isImageValid = false;
+  }
+
+  onLoaded() {
+    this.isImageValid = true;
   }
 
   onSubmit() {
@@ -102,6 +104,8 @@ export class SettingsPageComponent implements OnInit {
     return fetch(control.value)
       .then((ok) => null)
       .catch((err) => {
+        console.log(err);
+
         return { isInvalid: true };
       });
   }

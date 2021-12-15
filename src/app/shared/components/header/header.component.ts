@@ -35,8 +35,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   scrollEvent = (event: any): void => {
     if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
+      document.body.scrollTop > 200 ||
+      document.documentElement.scrollTop > 200
     ) {
       this.scroll = true;
     } else {

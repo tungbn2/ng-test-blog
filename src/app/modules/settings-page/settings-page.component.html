@@ -19,19 +19,15 @@
             formControlName="image"
             placeholder="Enter the new image link"
             [ngClass]="{
-              'is-invalid':
-                settingForm.controls.image.errors?.isInvalid &&
-                settingForm.controls.image.touched,
+              'is-invalid': !isImageValid && settingForm.controls.image.touched,
               'is-valid':
                 settingForm.controls.image.valid &&
-                settingForm.controls.image.touched
+                settingForm.controls.image.touched &&
+                isImageValid
             }"
           />
           <p
-            *ngIf="
-              settingForm.controls.image.errors?.isInvalid &&
-              settingForm.controls.image.touched
-            "
+            *ngIf="!isImageValid && settingForm.controls.image.touched"
             class="invalid-feedback"
           >
             Image Url is Invalid!
@@ -42,7 +38,8 @@
             [src]="settingForm.value.image"
             alt=""
             class="imageUrl"
-            (error)="onErrorImage($event)"
+            (load)="onLoaded()"
+            (error)="onErrorImage()"
           />
         </div>
       </div>
@@ -55,11 +52,20 @@
           placeholder="Enter the new username"
           [ngClass]="{
             'is-invalid':
-              settingForm.controls.username.errors?.required &&
+              settingForm.controls.username.errors &&
               settingForm.controls.username.touched,
             'is-valid': !!settingForm.controls.username.value
           }"
         />
+        <p
+          *ngIf="
+            settingForm.controls.username.errors &&
+            settingForm.controls.username.touched
+          "
+          class="invalid-feedback"
+        >
+          User name is required and max length 15 characters
+        </p>
       </div>
 
       <div class="form-group">
@@ -98,7 +104,7 @@
         </button>
         <button
           class="btn btn-success"
-          [disabled]="settingForm.invalid"
+          [disabled]="settingForm.invalid && isImageValid"
           type="submit"
         >
           <i class="fas fa-edit"></i>

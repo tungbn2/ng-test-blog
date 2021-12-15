@@ -62,7 +62,9 @@
       </div>
 
       <div class="show-taglist">
-        <span *ngFor="let tagItem of tagListData; index as i" class="tag-item"
+        <span
+          *ngFor="let tagItem of tagListData; index as i"
+          class="tag-item me-2 mt-2"
           >#{{ tagItem }}
           <i class="fas fa-times-circle" (click)="onRemoveTagItem(i)"></i
         ></span>
