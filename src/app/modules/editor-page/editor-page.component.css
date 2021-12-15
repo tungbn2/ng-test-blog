@@ -9,6 +9,7 @@
 }
 
 .tag-item {
+  color: gray;
   padding: 10px;
   border: 1px solid gray;
   border-radius: 1rem;

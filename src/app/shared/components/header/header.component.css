@@ -1,16 +1,23 @@
-.avatar-header {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 2px solid gray;
-  margin: auto 5px;
-}
-
 .nav-link {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .nav-item {
   margin-left: 0 !important;
 }
-
+.fw-bolder {
+  color: rgb(66, 66, 201) !important;
+}
+.bg-light {
+  background-color: #f5f7fe !important;
+}
+.nav {
+  box-sizing: content-box;
+}
+.avatar-header {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid gray;
+  margin: auto 10px;
+}

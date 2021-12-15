@@ -9,6 +9,7 @@
     ></textarea>
 
     <div class="group-button d-flex justify-content-between">
+      <!-- avatar -->
       <a [routerLink]="['/profile', currentUser.username]"
         ><img
           [src]="currentUser.image"
@@ -16,6 +17,8 @@
           class="avatar"
           (error)="changeSource($event)"
       /></a>
+
+      <!-- button -->
       <button
         class="btn btn-success"
         (click)="onSubmitComment()"

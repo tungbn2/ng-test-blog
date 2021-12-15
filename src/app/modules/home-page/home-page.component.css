@@ -17,10 +17,11 @@ hr {
 .btn-custom {
   box-shadow: 2px 2px 5px gainsboro;
   border-radius: 1rem;
+  background-color: #f5f7fe;
 }
 
 .btn-custom:hover {
-  box-shadow: 10px 10px 5px gainsboro;
+  box-shadow: 10px 10px 5px gray;
   color: rgb(13, 110, 250);
 }
 
@@ -106,12 +107,16 @@ header .container {
   background-attachment: fixed;
   background-image: linear-gradient(
       45deg,
-      rgba(152, 152, 153, 0.4) 55%,
-      rgba(245, 247, 247, 0.5)
+      rgba(189, 188, 188, 0.6) 55%,
+      rgba(102, 226, 226, 0.5)
     ),
-    url("https://previews.123rf.com/images/motizova/motizova1803/motizova180300087/97488569-open-book-hardback-books-on-wooden-table-education-background-back-to-school-copy-space-for-text-.jpg");
+    url("https://i.pinimg.com/originals/12/f1/8c/12f18c62d50f276c7722d2dd4a73a82c.gif");
 }
 
 .container-width {
   width: 90%;
+}
+
+.text-dark {
+  color: rgb(0, 0, 172);
 }

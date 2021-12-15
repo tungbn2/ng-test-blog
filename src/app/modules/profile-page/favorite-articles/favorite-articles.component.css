@@ -1,10 +1,11 @@
 .btn-tab {
   box-shadow: 2px 2px 5px gainsboro;
   border-radius: 1rem;
+  background-color: #f5f7fe;
 }
 
 .btn-tab:hover {
-  box-shadow: 10px 10px 5px gainsboro;
+  box-shadow: 5px 5px 5px gray;
   color: rgb(13, 110, 250);
 }
 

@@ -8,6 +8,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { LoginComponent } from './modules/auth-page/login/login.component';
 import { RegisterComponent } from './modules/auth-page/register/register.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
     LoginComponent,
     RegisterComponent,
     NotFoundComponent,
+    FooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, CoreModule, AllAppModule],
   providers: [],
