@@ -70,9 +70,11 @@ export class AuthStoreService {
 
     if (localStorage.getItem('userBlogData')) {
       const user = JSON.parse(localStorage.getItem('userBlogData') || '');
+      this.api.GetCurrentUser().subscribe((user) => {
+        this.userData = user.user;
+        this.currentUser.next({ ...this.userData });
+      });
 
-      this.userData = user;
-      this.currentUser.next(user);
       // this.autoLogout();
     } else {
       this.currentUser.next(null);
