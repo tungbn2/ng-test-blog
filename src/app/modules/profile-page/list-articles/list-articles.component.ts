@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./list-articles.component.css'],
 })
 export class ListArticlesComponent implements OnInit, OnDestroy {
-  articlesList: ArticlesModel.MultiArticles | undefined;
+  articleList: ArticlesModel.MultiArticles | undefined;
   username: string = '';
   isLoaded: boolean = false;
 
@@ -31,19 +31,16 @@ export class ListArticlesComponent implements OnInit, OnDestroy {
         switchMap((params) => {
           if (params['username']) {
             this.username = params['username'];
-            this.articleStore.GetListArticles({ author: this.username });
+            this.articleStore.GetListArticles({
+              author: this.username,
+              limit: 9,
+            });
           }
           return this.articleStore.ArticlesListUpdate;
         }),
         tap((articlesListData) => {
-          this.articlesList = articlesListData;
+          this.articleList = articlesListData;
           this.isLoaded = true;
-
-          this.pageList = [];
-          let total = Math.ceil(articlesListData.articlesCount / 20);
-          for (let i = 1; i <= total; i++) {
-            this.pageList.push(i);
-          }
         })
       )
       .subscribe();
@@ -52,30 +49,14 @@ export class ListArticlesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.route$ ? this.route$.unsubscribe() : '';
   }
+  onChangePage(page: number) {
+    this.isLoaded = false;
+    this.currentPage = page;
 
-  onNextPage() {
-    this.currentPage++;
     this.articleStore.GetListArticles({
       author: this.username,
-      offset: (this.currentPage - 1) * 20,
-    });
-  }
-
-  onGotoPage(item: number) {
-    if (this.currentPage != item) {
-      this.currentPage = item;
-      this.articleStore.GetListArticles({
-        author: this.username,
-        offset: (this.currentPage - 1) * 20,
-      });
-    }
-  }
-
-  onPrevPage() {
-    this.currentPage--;
-    this.articleStore.GetListArticles({
-      author: this.username,
-      offset: (this.currentPage - 1) * 20,
+      offset: (this.currentPage - 1) * 9,
+      limit: 9,
     });
   }
 }

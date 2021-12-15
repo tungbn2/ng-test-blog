@@ -1,6 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserModel } from 'src/app/models';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { Observable, of, timer } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { AuthStoreService } from 'src/app/services/store/auth-store.service';
 import Swal from 'sweetalert2';
 
@@ -11,14 +20,20 @@ import Swal from 'sweetalert2';
 })
 export class SettingsPageComponent implements OnInit {
   settingForm = new FormGroup({
-    image: new FormControl(''),
+    image: new FormControl(
+      '',
+      [],
+      this.validateUserNameFromAPIDebounce.bind(this)
+    ),
     username: new FormControl('', Validators.required),
     bio: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
   });
 
-  constructor(private auth: AuthStoreService) {}
+  isImageValid: boolean = true;
+
+  constructor(private auth: AuthStoreService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.auth.currentUser.subscribe((userData) => {
@@ -29,6 +44,15 @@ export class SettingsPageComponent implements OnInit {
         email: userData?.email,
       });
     });
+  }
+
+  onErrorImage(event: any) {
+    this.isImageValid = false;
+    event.target.src = 'https://api.realworld.io/images/smiley-cyrus.jpeg';
+  }
+
+  onChangeImageUrl() {
+    console.log(this.settingForm.get('image'));
   }
 
   onSubmit() {
@@ -70,5 +94,15 @@ export class SettingsPageComponent implements OnInit {
         this.auth.Logout();
       }
     });
+  }
+
+  validateUserNameFromAPIDebounce(
+    control: AbstractControl
+  ): Promise<ValidationErrors | null> {
+    return fetch(control.value)
+      .then((ok) => null)
+      .catch((err) => {
+        return { isInvalid: true };
+      });
   }
 }

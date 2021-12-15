@@ -8,7 +8,7 @@ import { ArticleStoreService } from 'src/app/services/store/article-store.servic
   styleUrls: ['./home-articles.component.css'],
 })
 export class HomeArticlesComponent implements OnInit {
-  @Input() articleList: ArticlesModel.Article[] = [];
+  @Input() articleList!: ArticlesModel.MultiArticles;
   @Output() gotoTag = new EventEmitter<string>();
 
   ngOnInit(): void {}

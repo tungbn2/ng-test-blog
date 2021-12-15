@@ -16,31 +16,6 @@
         >Favorited Articles</a
       >
     </div>
-
-    <!-- <div class="pagination d-flex justify-content-center mt-4">
-      <nav aria-label="Page navigation example" *ngIf="pageList.length">
-        <ul class="pagination m-0">
-          <li class="page-item" [ngClass]="{ disabled: currentPage == 1 }">
-            <a class="page-link" aria-label="Previous" (click)="onPrevPage()">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-
-          <li class="page-item" *ngFor="let item of pageList">
-            <a class="page-link" (click)="onGotoPage(item)">{{ item }}</a>
-          </li>
-
-          <li
-            class="page-item"
-            [ngClass]="{ disabled: currentPage == pageList.length }"
-          >
-            <a class="page-link" aria-label="Next" (click)="onNextPage()">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div> -->
   </div>
 
   <div class="body mt-4">
@@ -48,7 +23,7 @@
     <app-loading *ngIf="!isLoaded"></app-loading>
 
     <!-- no article -->
-    <div class="no-article" *ngIf="articlesList?.articles?.length == 0">
+    <div class="no-article" *ngIf="articleList?.articles?.length == 0">
       <p class="fs-3">Oops... there is no article here</p>
       <a class="btn btn-outline-primary mt-2" [routerLink]="['/']"
         ><i class="fas fa-backward"></i> Back to Home</a
@@ -56,39 +31,20 @@
     </div>
 
     <!-- list-article -->
-    <div class="list-articles row">
+    <div class="list-articles row" *ngIf="isLoaded">
       <div
         class="col-lg-4 col-md-6 mb-4"
-        *ngFor="let article of articlesList?.articles"
+        *ngFor="let article of articleList?.articles"
       >
         <app-article-detail [article]="article"></app-article-detail>
       </div>
+      <app-pagiantor
+        [totalArticle]="articleList ? articleList.articlesCount : 0"
+        (changePage)="onChangePage($event)"
+        [currentPage]="currentPage"
+      ></app-pagiantor>
     </div>
   </div>
 
   <!-- footer -->
-  <div class="pagination d-flex justify-content-center mt-4">
-    <nav aria-label="Page navigation example" *ngIf="pageList.length">
-      <ul class="pagination m-0">
-        <li class="page-item" [ngClass]="{ disabled: currentPage == 1 }">
-          <a class="page-link" aria-label="Previous" (click)="onPrevPage()">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-
-        <li class="page-item" *ngFor="let item of pageList">
-          <a class="page-link" (click)="onGotoPage(item)">{{ item }}</a>
-        </li>
-
-        <li
-          class="page-item"
-          [ngClass]="{ disabled: currentPage == pageList.length }"
-        >
-          <a class="page-link" aria-label="Next" (click)="onNextPage()">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
 </div>

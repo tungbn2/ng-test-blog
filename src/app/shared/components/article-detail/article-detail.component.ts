@@ -40,8 +40,8 @@ export class ArticleDetailComponent implements OnInit {
     }
   }
 
-  onNavigate() {
-    this.router.navigate(['/article', this.article.slug]);
+  onNavigate(route: string, detail: string) {
+    this.router.navigate([route, detail]);
   }
 
   onClick(item: string) {

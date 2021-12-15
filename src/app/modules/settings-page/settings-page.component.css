@@ -7,3 +7,9 @@
   padding: 1rem;
   box-shadow: 5px 5px 5px gainsboro;
 }
+
+.imageUrl {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}

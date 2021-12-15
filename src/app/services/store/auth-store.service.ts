@@ -29,9 +29,13 @@ export class AuthStoreService {
     let loginData: UserModel.loginData = { user: EmailAndPass };
     this.api.Login(loginData).subscribe(
       (AuthUser) => {
-        this.userData = AuthUser.user;
-        this.currentUser.next({ ...this.userData });
         localStorage.setItem('userBlogData', JSON.stringify(AuthUser.user));
+        this.api.GetCurrentUser().subscribe((user) => {
+          this.userData = user.user;
+          this.currentUser.next({ ...this.userData });
+          localStorage.setItem('userBlogData', JSON.stringify(user.user));
+        });
+
         localStorage.setItem(
           'timeToLogin',
           JSON.stringify(new Date().toISOString())

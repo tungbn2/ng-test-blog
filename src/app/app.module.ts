@@ -9,7 +9,6 @@ import { LoginComponent } from './modules/auth-page/login/login.component';
 import { RegisterComponent } from './modules/auth-page/register/register.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -18,7 +18,7 @@ import { TagsStoreService } from 'src/app/services/store/tags-store.service';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
-  articleList: ArticlesModel.Article[] = [];
+  articleList!: ArticlesModel.MultiArticles;
   totalArticles: number = 0;
   tagList: string[] = [];
   currentUser: UserModel.User | null = null;
@@ -41,7 +41,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.articleStore.GetListArticles({});
+    this.articleStore.GetListArticles({ limit: 9 });
     this.tagStore.GetTags();
 
     this.user$ = this.authStore.currentUser.subscribe((currentUserData) => {
@@ -55,14 +55,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.ArticlesList$ = this.articleStore.ArticlesListUpdate.subscribe(
       (articlesData) => {
         this.isLoaded = true;
-        this.articleList = articlesData.articles;
-        this.totalArticles = articlesData.articlesCount;
-
-        this.pageList = [];
-        let maxpage = Math.ceil(this.totalArticles / 20);
-        for (let i = 1; i <= maxpage; i++) {
-          this.pageList.push(i);
-        }
+        this.articleList = articlesData;
       }
     );
   }
@@ -78,23 +71,14 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.user$ ? this.user$.unsubscribe : '';
   }
 
-  onNextPage() {
-    this.currentPage++;
-    this.articleStore.GetListArticles({ offset: (this.currentPage - 1) * 20 });
-  }
+  onChangePage(page: number) {
+    this.isLoaded = false;
+    this.currentPage = page;
 
-  onPrevPage() {
-    this.currentPage--;
-    this.articleStore.GetListArticles({ offset: (this.currentPage - 1) * 20 });
-  }
-
-  onGotoPage(page: number) {
-    if (this.currentPage != page) {
-      this.currentPage = page;
-      this.articleStore.GetListArticles({
-        offset: (this.currentPage - 1) * 20,
-      });
-    }
+    this.articleStore.GetListArticles({
+      offset: (this.currentPage - 1) * 9,
+      limit: 9,
+    });
   }
 
   onGotoFeed() {
@@ -106,7 +90,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
   onGotoGlobal() {
     this.status = 'global';
     this.isLoaded = false;
-    this.articleStore.GetListArticles({});
+    this.articleStore.GetListArticles({ limit: 9 });
   }
 
   onNavigateByTag(tag: string) {

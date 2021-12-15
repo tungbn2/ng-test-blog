@@ -183,6 +183,9 @@ export class ConnectApiService {
   }
 
   GetTags() {
-    return this.http.get<Tags>(Api.BASE_URL + Api.Endpoints.GetTags);
+    return this.http.get<Tags>(
+      Api.BASE_URL + Api.Endpoints.GetTags,
+      this.ApiHeaderWithToken
+    );
   }
 }

@@ -1,0 +1,29 @@
+<!-- pagination footer -->
+<div class="pagination d-flex justify-content-end mt-4 ">
+  <nav
+    aria-label="Page navigation example"
+    *ngIf="totalArticle"
+    class="d-flex align-items-center"
+  >
+    <span
+      >Articles: {{ currentPage > 1 ? (currentPage - 1) * 9 + " -" : "" }}
+      {{ currentArticles }} of {{ totalArticle }}</span
+    >
+    <ul class="pagination m-0">
+      <li class="pageni-item btn" [ngClass]="{ disabled: currentPage == 1 }">
+        <a class="pageni-link" aria-label="Previous" (click)="onPrevPage()">
+          <i class="fas fa-angle-double-left"></i>
+        </a>
+      </li>
+
+      <li
+        class="pageni-item btn"
+        [ngClass]="{ disabled: currentPage * 9 >= totalArticle }"
+      >
+        <a class="pageni-link" aria-label="Next" (click)="onNextPage()">
+          <i class="fas fa-angle-double-right"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

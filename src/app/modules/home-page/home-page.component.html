@@ -10,15 +10,7 @@
             detail.
           </p>
           <h5 class="mb-30">Popular Tags</h5>
-          <div *ngIf="!tagList.length">
-            <span
-              *ngFor="let tagItem of tagList"
-              (click)="onNavigateByTag(tagItem)"
-              class="tag-link"
-            >
-              #{{ tagItem }}
-            </span>
-
+          <div>
             <span class="tag-link" (click)="onNavigateByTag('welcome')">
               #welcome
             </span>
@@ -29,6 +21,14 @@
 
             <span class="tag-link" (click)="onNavigateByTag('codebaseShow')">
               #codebaseShow
+            </span>
+
+            <span
+              *ngFor="let tagItem of tagList"
+              (click)="onNavigateByTag(tagItem)"
+              class="tag-link"
+            >
+              #{{ tagItem }}
             </span>
           </div>
         </div>
@@ -70,79 +70,34 @@
             Tag Feed
           </button>
         </div>
-
-        <!-- <div class="pagination d-flex justify-content-center mt-4">
-          <nav aria-label="Page navigation example" *ngIf="pageList.length">
-            <ul class="pagination m-0">
-              <li class="page-item" [ngClass]="{ disabled: currentPage == 1 }">
-                <a
-                  class="page-link"
-                  aria-label="Previous"
-                  (click)="onPrevPage()"
-                >
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-
-              <li class="page-item" *ngFor="let item of pageList">
-                <a class="page-link" (click)="onGotoPage(item)">{{ item }}</a>
-              </li>
-
-              <li
-                class="page-item"
-                [ngClass]="{ disabled: currentPage == pageList.length }"
-              >
-                <a class="page-link" aria-label="Next" (click)="onNextPage()">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div> -->
       </div>
 
       <!-- body -->
       <div class="home-body d-flex justify-content-center mt-4">
         <div class="container-width">
-          <app-home-articles
-            [articleList]="articleList"
-            *ngIf="isLoaded"
-            (gotoTag)="onNavigateByTag($event)"
-          ></app-home-articles>
+          <div class="list-article" *ngIf="isLoaded">
+            <app-home-articles
+              [articleList]="articleList"
+              (gotoTag)="onNavigateByTag($event)"
+            ></app-home-articles>
+            <app-pagiantor
+              [totalArticle]="articleList ? articleList.articlesCount : 0"
+              (changePage)="onChangePage($event)"
+              [currentPage]="currentPage"
+            ></app-pagiantor>
+          </div>
+
           <app-loading *ngIf="!isLoaded"></app-loading>
-          <div class="no-article" *ngIf="articleList.length == 0 && isLoaded">
+          <div
+            class="no-article"
+            *ngIf="articleList?.articlesCount == 0 && isLoaded && articleList"
+          >
             <h3>Oops,... There is no article here</h3>
             <a (click)="onGotoGlobal()" class="btn btn-outline-primary"
               ><i class="fas fa-backward"></i> Back to Global Feed</a
             >
           </div>
         </div>
-      </div>
-
-      <!-- pagination footer -->
-      <div class="pagination d-flex justify-content-center mt-4">
-        <nav aria-label="Page navigation example" *ngIf="pageList.length">
-          <ul class="pagination m-0">
-            <li class="page-item" [ngClass]="{ disabled: currentPage == 1 }">
-              <a class="page-link" aria-label="Previous" (click)="onPrevPage()">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-
-            <li class="page-item" *ngFor="let item of pageList">
-              <a class="page-link" (click)="onGotoPage(item)">{{ item }}</a>
-            </li>
-
-            <li
-              class="page-item"
-              [ngClass]="{ disabled: currentPage == pageList.length }"
-            >
-              <a class="page-link" aria-label="Next" (click)="onNextPage()">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
     </div>
   </div>

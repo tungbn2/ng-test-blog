@@ -3,13 +3,48 @@
     <form [formGroup]="settingForm" (ngSubmit)="onSubmit()" class="p-2">
       <p class="fs-3 fw-bold text-center">Update your Settings</p>
 
-      <div class="form-group mt-4">
-        <input
-          type="text"
-          class="form-control"
-          formControlName="image"
-          placeholder="Enter the new image link"
-        />
+      <div class="form-group mt-4 row">
+        <div
+          class="col-9"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <input
+            type="text"
+            class="form-control"
+            formControlName="image"
+            placeholder="Enter the new image link"
+            [ngClass]="{
+              'is-invalid':
+                settingForm.controls.image.errors?.isInvalid &&
+                settingForm.controls.image.touched,
+              'is-valid':
+                settingForm.controls.image.valid &&
+                settingForm.controls.image.touched
+            }"
+          />
+          <p
+            *ngIf="
+              settingForm.controls.image.errors?.isInvalid &&
+              settingForm.controls.image.touched
+            "
+            class="invalid-feedback"
+          >
+            Image Url is Invalid!
+          </p>
+        </div>
+        <div class="col-3">
+          <img
+            [src]="settingForm.value.image"
+            alt=""
+            class="imageUrl"
+            (error)="onErrorImage($event)"
+          />
+        </div>
       </div>
 
       <div class="form-group">
@@ -46,7 +81,7 @@
         />
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <input
           type="password"
           class="form-control"
@@ -55,7 +90,7 @@
           autocomplete="off"
           readonly
         />
-      </div>
+      </div> -->
 
       <div class="form-button d-flex justify-content-between">
         <button class="btn btn-danger" (click)="onLogout()" type="button">
