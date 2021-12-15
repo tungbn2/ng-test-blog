@@ -10,8 +10,6 @@ export class HandleErrorService {
   constructor(private router: Router) {}
 
   HandleError(err: HttpErrorResponse) {
-    console.log(err);
-
     switch (err.status) {
       case 422:
         let msg: string = Object.entries(err.error.errors).reduce(
