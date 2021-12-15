@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -8,7 +8,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { Observable, of, timer } from 'rxjs';
+import { Observable, of, Subscription, timer } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { AuthStoreService } from 'src/app/services/store/auth-store.service';
 import Swal from 'sweetalert2';
@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
   templateUrl: './settings-page.component.html',
   styleUrls: ['./settings-page.component.css'],
 })
-export class SettingsPageComponent implements OnInit {
+export class SettingsPageComponent implements OnInit, OnDestroy {
   settingForm = new FormGroup({
     image: new FormControl('', []),
     username: new FormControl(
@@ -32,10 +32,12 @@ export class SettingsPageComponent implements OnInit {
 
   isImageValid: boolean = true;
 
+  user$: Subscription | undefined;
+
   constructor(private auth: AuthStoreService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.auth.currentUser.subscribe((userData) => {
+    this.user$ = this.auth.currentUser.subscribe((userData) => {
       this.settingForm.patchValue({
         image: userData?.image,
         username: userData?.username,
@@ -43,6 +45,10 @@ export class SettingsPageComponent implements OnInit {
         email: userData?.email,
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.user$ ? this.user$.unsubscribe() : '';
   }
 
   onErrorImage() {
@@ -69,6 +75,7 @@ export class SettingsPageComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         let updateUser: any = {};
+
         Object.entries(this.settingForm.value).forEach(([key, value]) => {
           let valueData = value ? (value as string) : '';
 

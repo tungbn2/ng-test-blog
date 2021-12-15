@@ -7,7 +7,10 @@
       class="profile-avatar mb-2"
       (error)="changeSource($event)"
     />
-    <h3 class="fw-bold mt-2">{{ profileData?.username }}</h3>
+    <h3 class="fw-bold mt-2" style="cursor: pointer">
+      {{ profileData?.username }}
+    </h3>
+    <p class="fw-bold" *ngIf="profileData?.bio">"{{ profileData?.bio }}"</p>
     <div class="profile-button mt-2">
       <button
         class="btn btn-primary fw-bold"
