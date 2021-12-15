@@ -20,14 +20,14 @@
           class="nav-link fw-bold fs-5"
           >{{ article.author.username }}</a
         >
-        <p>Create at {{ article.updatedAt | date: "shortDate" }}</p>
+        <p>{{ article.updatedAt | date: "mediumDate" }}</p>
       </div>
     </div>
 
     <!-- favorite -->
     <div class="favorite-btn d-flex align-items-center">
       <button
-        class="btn btn-success"
+        class="btn btn-custom"
         (click)="onFavorite(article.slug, article.favorited, $event)"
         [disabled]="disabled"
       >

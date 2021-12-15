@@ -61,13 +61,12 @@ p {
 
 .btn-custom {
   font-weight: bold;
-  border-radius: 1rem;
+  border-radius: 40%;
 }
 
 .btn-custom:hover {
   /* border-bottom: 1px solid gainsboro; */
   box-shadow: 5px 5px 15px gray;
-  color: rgb(13, 110, 250);
 }
 
 hr {

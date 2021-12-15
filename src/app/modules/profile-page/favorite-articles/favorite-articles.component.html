@@ -1,15 +1,17 @@
 <div class="favorite-list">
   <!-- tab -->
   <div class="home-header row d-flex justify-content-center">
-    <div class="tag-group col-md-6 d-flex justify-content-around mb-2">
+    <div
+      class="tag-group col-md-6 d-flex justify-content-around flex-wrap mb-2"
+    >
       <a
-        class="btn btn-tab fs-4"
+        class="btn btn-tab fs-4 mt-2"
         [routerLink]="['/profile', username]"
         routerLinkActive="active"
         >My Articles</a
       >
       <a
-        class="btn btn-tab fs-4"
+        class="btn btn-tab fs-4 mt-2"
         [routerLink]="['/profile', username, 'favorites']"
         routerLinkActive="active"
         >Favorited Articles</a

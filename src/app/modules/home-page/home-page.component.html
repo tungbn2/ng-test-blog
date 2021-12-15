@@ -1,6 +1,4 @@
 <div class="home-page">
-
-
   <!-- header -->
   <header class="xxl bg-img">
     <div class="container">
@@ -49,9 +47,18 @@
     <div class="p-4">
       <!-- nav -->
       <div class="home-header row d-flex justify-content-center">
-        <div class="tag-group col-md-6 d-flex justify-content-around mb-2">
+        <div
+          class="
+            tag-group
+            col-md-6
+            d-flex
+            justify-content-around
+            flex-wrap
+            mb-2
+          "
+        >
           <button
-            class="btn btn-custom fs-4"
+            class="btn btn-custom fs-4 mt-2"
             [ngClass]="{ active: status == 'feed' }"
             (click)="onGotoFeed()"
             *ngIf="currentUser"
@@ -60,7 +67,7 @@
           </button>
 
           <button
-            class="btn btn-custom fs-4"
+            class="btn btn-custom fs-4 mt-2"
             [ngClass]="{ active: status == 'global' }"
             (click)="onGotoGlobal()"
             [disabled]="!currentUser"
@@ -68,7 +75,10 @@
             Global Feed
           </button>
 
-          <button class="btn btn-custom active fs-4" *ngIf="status == 'tag'">
+          <button
+            class="btn btn-custom active fs-4 mt-2"
+            *ngIf="status == 'tag'"
+          >
             Tag Feed
           </button>
         </div>
@@ -104,5 +114,3 @@
     </div>
   </div>
 </div>
-
-
