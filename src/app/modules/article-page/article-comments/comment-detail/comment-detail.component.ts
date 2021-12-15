@@ -13,6 +13,11 @@ export class CommentDetailComponent implements OnInit {
   @Input() comment!: ArticlesModel.Comment;
   @Input() isUser: boolean = false;
 
+  get currentUser() {
+    let currUser = JSON.parse(localStorage.getItem('userBlogData') || '');
+    return currUser;
+  }
+
   slug: string = '';
 
   constructor(

@@ -20,7 +20,11 @@
       </p>
     </div>
 
-    <button class="btn btn-success" *ngIf="isUser" (click)="onDeleteComment()">
+    <button
+      class="btn btn-success"
+      *ngIf="isUser || comment?.author?.username === currentUser?.username"
+      (click)="onDeleteComment()"
+    >
       <i class="far fa-trash-alt"></i>
     </button>
   </div>

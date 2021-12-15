@@ -30,20 +30,17 @@ export class ArticlePageComponent implements OnInit, OnDestroy {
     this.user$ = this.auth.currentUser.subscribe((user) => {
       this.currentUser = user;
     });
-    this.article$ = this.route.params
-      .pipe(
-        switchMap((params) => {
-          this.isLoaded = false;
-          this.slug = params['slug'];
-          this.article.GetArticleAndProfile(this.slug);
-          return this.article.CurrentArticleAndProfileUpdate;
-        }),
-        tap((articleAndProfile) => {
+    this.article$ = this.route.params.subscribe((data) => {
+      this.isLoaded = false;
+      this.slug = data['slug'];
+      this.article.GetArticleAndProfile(this.slug);
+      this.article.CurrentArticleAndProfileUpdate.subscribe(
+        (articleAndProfile) => {
           this.isLoaded = true;
           this.articleData = articleAndProfile;
-        })
-      )
-      .subscribe();
+        }
+      );
+    });
   }
 
   ngOnDestroy() {

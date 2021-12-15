@@ -159,10 +159,9 @@ a:focus {
 }
 
 p {
-  font-family: "Nunito Sans", sans-serif !important;
-  font-weight: 400;
-  font-size: 1rem;
-  color: #656774;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: darkblue;
   letter-spacing: 0.015rem;
   margin-bottom: 10px;
 }
