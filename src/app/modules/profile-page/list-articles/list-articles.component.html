@@ -36,7 +36,7 @@
         class="col-lg-4 col-md-6 mb-4"
         *ngFor="let article of articleList?.articles"
       >
-        <app-article-detail [article]="article"></app-article-detail>
+        <app-article-detail [article]="article" (gotoTag)="gotoTag()"></app-article-detail>
       </div>
       <app-pagiantor
         [totalArticle]="articleList ? articleList.articlesCount : 0"

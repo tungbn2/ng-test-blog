@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { switchMap, tap } from 'rxjs/operators';
 import { ArticleStoreService } from 'src/app/services/store/article-store.service';
@@ -22,7 +22,8 @@ export class ListArticlesComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private articleStore: ArticleStoreService
+    private articleStore: ArticleStoreService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -58,5 +59,9 @@ export class ListArticlesComponent implements OnInit, OnDestroy {
       offset: (this.currentPage - 1) * 9,
       limit: 9,
     });
+  }
+
+  gotoTag() {
+    this.router.navigateByUrl('/');
   }
 }
