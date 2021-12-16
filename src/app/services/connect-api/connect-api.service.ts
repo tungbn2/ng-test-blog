@@ -25,9 +25,11 @@ import { OtherModel } from 'src/app/models';
 })
 export class ConnectApiService {
   private get ApiHeaderWithToken() {
-    const token: string = JSON.parse(
-      localStorage.getItem('userBlogData') || ''
-    )?.token;
+    let token: string = '';
+    if (localStorage.getItem('userBlogData')) {
+      token = JSON.parse(localStorage.getItem('userBlogData') || '').token;
+    }
+
     return {
       headers: new HttpHeaders({
         authorization: token ? 'Bearer ' + token : '',
